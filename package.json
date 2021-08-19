@@ -1,0 +1,40 @@
+{
+  "name": "cab_booking",
+  "version": "1.0.0",
+  "description": "cab booking backend",
+  "main": "server.ts",
+  "scripts": {
+    "start": "ts-node server.ts",
+    "build": "tsc --build && cp .env ./build/.env",
+    "restart": "sudo rm -rf build && tsc --build && cp .env ./build/.env && pm2 restart all && pm2 logs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhishekdhadwal/cab_booking.git"
+  },
+  "author": "Abhishek Dhadwal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abhishekdhadwal/cab_booking/issues"
+  },
+  "homepage": "https://github.com/abhishekdhadwal/cab_booking#readme",
+  "devDependencies": {
+    "@types/node": "^16.6.2",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^20.1.5",
+    "@hapi/inert": "^6.0.3",
+    "@hapi/vision": "^6.1.0",
+    "@types/hapi__hapi": "^20.0.9",
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
+    "hapi-auth-jwt2": "^10.2.0",
+    "hapi-swagger": "^14.2.4",
+    "joi": "^17.4.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.11",
+    "ts-mongoose": "0.0.24"
+  }
+}
