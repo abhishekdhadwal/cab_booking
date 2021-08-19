@@ -1,9 +1,9 @@
 
-import { user_controller } from '../Controller/index';
+import { driver_controller } from '../Controller/index';
 import { success_msg, app_constansts, swagger_msgs } from '../Config/index';
 import { universal_functions } from '../Utils/index';
-import { user_validator, header } from '../validators/index';
-const scope = app_constansts.scope.user;
+import { driver_validator, header } from '../validators/index';
+const scope = app_constansts.scope.driver;
 
 
 const plugins = {
@@ -16,13 +16,13 @@ const plugins = {
 
 const signup = {
    method : "POST",
-   path : "/User/signup",
+   path : "/Driver/signup",
    options : {
       description : "User signup api",
       auth : false,
       tags : ["api"],
       handler : (request, reply) => {
-         return user_controller.signup(request.payload)
+         return driver_controller.signup(request.payload)
          .then(response => {
                return universal_functions.send_success(success_msg.default_msg, response);
          })    
@@ -31,7 +31,7 @@ const signup = {
          });
       },
       validate : {
-         payload : user_validator.signup,
+         payload : driver_validator.signup,
          failAction : universal_functions.fail_action
       },
       plugins : plugins
@@ -40,13 +40,13 @@ const signup = {
 
 const login = {
    method : "POST",
-   path : "/User/login",
+   path : "/Driver/login",
    options : {
       description : "User login api",
       auth : false,
       tags : ["api"],
       handler : (request, reply) => {
-         return user_controller.login(request.payload)
+         return driver_controller.login(request.payload)
          .then(response => {
                return universal_functions.send_success(success_msg.default_msg, response);
          })    
@@ -55,7 +55,7 @@ const login = {
          });
       },
       validate : {
-         payload : user_validator.login,
+         payload : driver_validator.login,
          failAction : universal_functions.fail_action
       },
       plugins : plugins

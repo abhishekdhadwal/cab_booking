@@ -45,12 +45,12 @@ const verify_token = async (token : any) => {
             let options = { lean : true }
             let fetch_data : any = {}
       
-            // if(decoded.scope == scope.driver) {
-            //       fetch_data = await DAO.get_data(Models.Admin, query, projection, options)
-            // }
             if(decoded.scope == scope.user) {
                   fetch_data = await DAO.get_data(Models.Users, query, projection, options)
-            }            
+            }     
+            if(decoded.scope == scope.driver) {
+                  fetch_data = await DAO.get_data(Models.Drivers, query, projection, options)
+            }       
 
             if(fetch_data.length == 0) { throw universal_functions.send_error(error_msg.unauthorized, null) }
             else { 

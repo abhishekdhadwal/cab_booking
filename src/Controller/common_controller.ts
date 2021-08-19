@@ -48,6 +48,24 @@ const gen_user_token = async(data : any) => {
       }
 }
 
+
+const gen_driver_token = async(data : any) => {
+      try {
+
+            let token_data = { 
+                  _id : data._id,
+                  scope : scope.driver,
+                  collection : Models.Drivers,
+                  token_gen_at : +new Date()
+            }
+            return await fetch_token(token_data)
+
+      }
+      catch(err) {
+            throw err;
+      }
+}
+
 const bcrypt_password = async(password : string) => {
       try {
 
@@ -93,6 +111,7 @@ const check_phone_no = async(data : any) => {
 export {
       fetch_token,
       gen_user_token,
+      gen_driver_token,
       bcrypt_password,
       decrypt_password,
       check_phone_no
