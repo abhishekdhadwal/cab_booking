@@ -14,7 +14,7 @@ const default_otp = 1234;
 const salt_rounds = 10;
 const per_km_price = 5;
 
-// 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
+
 
 export {
       seckret_keys,
