@@ -17,6 +17,10 @@ const login =  Joi.object({
    password : Joi.string().required().description("Enter your Password")
 })
 
+
+
+
+
 export {
    signup,
    login

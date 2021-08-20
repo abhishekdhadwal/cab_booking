@@ -4,6 +4,7 @@ import * as Models from '../Models/index';
 import { error_msg, app_constansts } from '../Config/index';
 import { common_controller }  from './index';
 import { user_functions } from '../functions/index';
+import { ag_nearby_drivers } from '../aggregation/index';
 
 
 const signup = async(payload_data : any) => {
@@ -73,11 +74,34 @@ const login = async(payload_data : any) => {
    }
 }
 
+const near_by_drivers = async(payload_data : any) => {
+   try {
 
+      let { lat, lng, pagination } = payload_data
+
+      let query = [
+         await ag_nearby_drivers.near_by_drivers(lat, lng),
+         await ag_nearby_drivers.set_data(),
+         await ag_nearby_drivers.group_data(),
+         await ag_nearby_drivers.sort_data(),
+         await ag_nearby_drivers.skip_data(pagination),
+         await ag_nearby_drivers.limit_data()
+      ]
+
+      let options = { lean : true }
+      let fetch_data : any = await DAO.aggregate_data(Models.Drivers, query, options)
+      return fetch_data
+
+   }
+   catch(err) {
+      throw err;
+   }
+}
 
 
 
 export {
    signup,
-   login
+   login,
+   near_by_drivers
 }

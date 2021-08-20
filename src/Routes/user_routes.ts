@@ -62,10 +62,36 @@ const login = {
    }
 }
 
+const near_by_drivers = {
+   method : "GET",
+   path : "/User/near_by_drivers",
+   options : {
+      description : "User get near by drivers api",
+      auth : { strategies : [ scope ] },
+      tags : ["api"],
+      handler : (request, reply) => {
+         return user_controller.near_by_drivers(request.query)
+         .then(response => {
+               return universal_functions.send_success(success_msg.default_msg, response);
+         })    
+         .catch(error => {
+               return universal_functions.send_error(error, reply);
+         });
+      },
+      validate : {
+         headers : header,
+         query : user_validator.near_by_drivers,
+         failAction : universal_functions.fail_action
+      },
+      plugins : plugins
+   }
+}
+
 
 const user_routes = [
    signup,
-   login
+   login,
+   near_by_drivers
 ]
 
 export default user_routes
