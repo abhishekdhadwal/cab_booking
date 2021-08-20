@@ -15,7 +15,6 @@ const salt_rounds = 10;
 const per_km_price = 5;
 
 
-
 export {
       seckret_keys,
       scope,
