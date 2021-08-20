@@ -21,38 +21,6 @@ const near_by_drivers = async(lat : number, lng : number) => {
     }
 }
 
-// const lookup_drivers = async() => {
-//     try {
-
-//         return {
-//             $lookup : {
-//                 from : "drivers",
-//                 localField : "_id",
-//                 foreignField : "_id",
-//                 as : "fetch_drivers"
-//             }
-//         }
-
-//     }
-//     catch(err) {
-//         throw err;
-//     }
-// }
-
-
-// const unwind_drivers = async() => {
-//     try {
-
-//         return {
-//             $unwind : "$fetch_drivers"
-//         }
-        
-//     }
-//     catch(err) {
-//         throw err;
-//     }
-// }
-
 
 const set_data = async() => {
     try {
