@@ -3,8 +3,8 @@ cab booking backend
 
 STEPS
 1> To run the server : npm start      
-2> swagger documentation link --> http://localhost:3960/documentation#
-3> By default i had created 1 default user and 1 default driver
+2> swagger documentation link --> http://localhost:3960/documentation# 
+3> By default i had created 1 default user and 1 default driver       
 
     --> user credentials
         1> country_code : +91
