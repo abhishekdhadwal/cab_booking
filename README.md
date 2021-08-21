@@ -2,6 +2,7 @@
 cab booking backend
 
 STEPS
+
 1> To run the server : npm start      
 2> swagger documentation link --> http://localhost:3960/documentation# 
 
