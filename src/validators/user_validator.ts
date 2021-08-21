@@ -26,9 +26,42 @@ const near_by_drivers = Joi.object({
    .default(0)
 })
 
+const create_booking = Joi.object({
+   driver_id : Joi.string().required().description("Pass _id from near_by_drivers api"),
+   price : Joi.number().required().description("Booking Price"),
+   current_lat : Joi.number().required().description("Enter Your Current Latitude Here"),
+   current_lng : Joi.number().required().description("Enter Your Current Longitude Here"),
+   current_address : Joi.string().required().description("Enter your Current Address Here"),
+   destination_lat : Joi.number().required().description("Enter Your Destination Latitude Here"),
+   destination_lng : Joi.number().required().description("Enter Your Destination Longitude Here"), 
+   destination_address : Joi.string().required().description("Enter your Destination Address Here")
+})
+
+
+const calculate_price = Joi.object({
+   current_lat : Joi.number().required().description("Enter Your Current Latitude Here"),
+   current_lng : Joi.number().required().description("Enter Your Current Longitude Here"),
+   destination_lat : Joi.number().required().description("Enter Your Destination Latitude Here"),
+   destination_lng : Joi.number().required().description("Enter Your Destination Longitude Here")
+})
+
+
+const cancel_bookings = Joi.object({
+   booking_id : Joi.string().required().description("Pass _id from list_active_bookings api"),
+})
+
+const booking_history = Joi.object({
+   pagination : Joi.number().optional()
+   .description("example 0, 1, 2 etc by default only 10 records are shown")
+   .default(0)
+})
 
 export {
    signup,
    login,
-   near_by_drivers
+   near_by_drivers,
+   calculate_price,
+   create_booking,
+   cancel_bookings,
+   booking_history
 }

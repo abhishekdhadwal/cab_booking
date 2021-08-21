@@ -30,6 +30,7 @@
     "@types/hapi__hapi": "^20.0.9",
     "bcrypt": "^5.0.1",
     "dotenv": "^10.0.0",
+    "geo-distance": "^0.2.0",
     "hapi-auth-jwt2": "^10.2.0",
     "hapi-swagger": "^14.2.4",
     "joi": "^17.4.2",

@@ -54,6 +54,31 @@ let phone_no_not_registered = {
       type : 'phone_no_not_registered'
 }
 
+let invalid_booking_id = {
+      status_code : 400,
+      custom_msg : 'Sorry this is not a valid booking _id, Please try again',
+      type : 'invalid_booking_id'
+}
+
+let rejected_booking_error = {
+      status_code : 400,
+      custom_msg : 'Sorry you can not cancel rejected booking, Please try again',
+      type : 'rejected_booking_error'
+}
+
+let cancelled_booking_error = {
+      status_code : 400,
+      custom_msg : 'Booking already cancelled',
+      type : 'cancelled_booking_error'
+}
+
+let completed_booking_error = {
+      status_code : 400,
+      custom_msg : 'Sorry you can not cancel completed booking, Please try again',
+      type : 'rejected_booking_error'
+}
+
+
 export {
       default_msg,
       no_data_found,
@@ -63,5 +88,9 @@ export {
       data_already_exists,
       phone_no_already_exists,
       something_went_wrong,
-      phone_no_not_registered
+      phone_no_not_registered,
+      invalid_booking_id,
+      rejected_booking_error,
+      cancelled_booking_error,
+      completed_booking_error
 }

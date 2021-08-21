@@ -18,10 +18,21 @@ const login =  Joi.object({
 })
 
 
+const manage_bookings = Joi.object({
+   booking_id : Joi.string().required().description("Pass _id from list_bookings api"),
+   status : Joi.string().required().valid('ACCEPT', 'REJECT', 'COMPLETED')
+})
 
+const booking_history = Joi.object({
+   pagination : Joi.number().optional()
+   .description("example 0, 1, 2 etc by default only 10 records are shown")
+   .default(0)
+})
 
 
 export {
    signup,
-   login
+   login,
+   manage_bookings,
+   booking_history
 }

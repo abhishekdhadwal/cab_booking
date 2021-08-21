@@ -4,6 +4,7 @@ import * as Models from '../Models/index';
 import { error_msg, app_constansts } from '../Config/index';
 import { common_controller }  from './index';
 import { driver_functions } from '../functions/index';
+const { default_limit } = app_constansts
 
 
 const signup = async(payload_data : any) => {
@@ -73,11 +74,98 @@ const login = async(payload_data : any) => {
    }
 }
 
+const list_bookings = async(user_data : any) => {
+   try {
 
+      let query = { 
+         driver_id : user_data._id, 
+         status : { $in : [ 'PENDING', 'ACCEPT' ] } 
+      }
+      let projection = { __v : 0 }
+      let options = { 
+         lean : true, 
+         sort : { _id : -1 } 
+      }
+      let populate = [ { path : 'user_id', select : 'name country_code phone_no' } ]
+      let response = await DAO.populate_data(Models.Bookings, query, projection, options, populate)
+      return response
+
+   }
+   catch(err) {
+      throw err;
+   }
+}
+
+
+const manage_bookings = async(payload_data : any, user_data : any) => {
+   try {
+
+      let { booking_id, status } = payload_data
+
+      let query = { _id : booking_id, driver_id : user_data._id }
+      let update = { status : status }
+      let options = { new : true }
+      let response = await DAO.find_and_update(Models.Bookings, query, update, options)
+      return response
+
+   }
+   catch(err) {
+      throw err;
+   }
+}
+
+const booking_history = async(payload_data : any, user_data : any) => {
+   try {
+
+      let { pagination } = payload_data
+
+      let query = { 
+         driver_id : user_data._id,
+         status : { $nin : [ 'PENDING', 'ACCEPT' ] }  
+      }
+      let projection = { __v : 0 }
+      let options = { 
+         lean : true, 
+         sort : { _id : -1 }, 
+         skip : pagination * default_limit,
+         limit : default_limit
+      }
+      let populate = [ { path : 'user_id', select : 'name country_code phone_no' } ]
+      let response : any = await DAO.populate_data(Models.Bookings, query, projection, options, populate)
+
+      return {
+         total_count : response.length,
+         data : response
+      }
+
+   }
+   catch(err) {
+      throw err;
+   }
+}
+
+const logout = async(user_data : any) => {
+   try {
+
+      let query = { _id : user_data._id }
+      let update = { access_token : null, token_gen_at : 0 }
+      let options = { new : true }
+      await DAO.find_and_update(Models.Drivers, query, update, options)
+
+
+   }
+   catch(err) {
+      throw err;
+   }
+}
 
 
 
 export {
    signup,
-   login
+   login,
+   list_bookings,
+   manage_bookings,
+   booking_history,
+   logout
 }

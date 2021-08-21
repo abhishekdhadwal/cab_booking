@@ -2,6 +2,7 @@
 import * as DAO from '../DAO/index';
 import * as Models from '../Models/index';
 import { common_controller }  from '../Controller/index';
+import { error_msg } from '../Config';
 
 
 const set_singup_data = async(data : any) => {
@@ -25,6 +26,7 @@ const set_singup_data = async(data : any) => {
         throw err;
     }
 }
+
 
 
 export {
