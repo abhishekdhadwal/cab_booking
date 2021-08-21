@@ -4,7 +4,7 @@ import { success_msg, app_constansts, swagger_msgs } from '../Config/index';
 import { universal_functions } from '../Utils/index';
 import { user_validator, header } from '../validators/index';
 const scope = app_constansts.scope.user;
-
+const fail_action = 'log'
 
 const plugins = {
    "hapi-swagger": {
@@ -32,7 +32,7 @@ const signup = {
       },
       validate : {
          payload : user_validator.signup,
-         failAction : universal_functions.fail_action
+         failAction : fail_action
       },
       plugins : plugins
    }
@@ -56,7 +56,7 @@ const login = {
       },
       validate : {
          payload : user_validator.login,
-         failAction : universal_functions.fail_action
+         failAction : fail_action
       },
       plugins : plugins
    }
@@ -81,7 +81,7 @@ const near_by_drivers = {
       validate : {
          headers : header,
          query : user_validator.near_by_drivers,
-         failAction : universal_functions.fail_action
+         failAction : fail_action
       },
       plugins : plugins
    }
@@ -107,7 +107,7 @@ const calculate_price = {
       validate : {
          headers : header,
          query : user_validator.calculate_price,
-         failAction : universal_functions.fail_action
+         failAction : fail_action
       },
       plugins : plugins
    }
@@ -133,7 +133,7 @@ const create_booking = {
       validate : {
          headers : header,
          payload : user_validator.create_booking,
-         failAction : universal_functions.fail_action
+         failAction : fail_action
       },
       plugins : plugins
    }
@@ -159,7 +159,7 @@ const cancel_bookings = {
       validate : {
          headers : header,
          payload : user_validator.cancel_bookings,
-         failAction : universal_functions.fail_action
+         failAction : fail_action
       },
       plugins : plugins
    }
@@ -184,7 +184,7 @@ const list_active_bookings = {
       },
       validate : {
          headers : header,
-         failAction : universal_functions.fail_action
+         failAction : fail_action
       },
       plugins : plugins
    }
@@ -210,7 +210,7 @@ const booking_history = {
       validate : {
          headers : header,
          query : user_validator.booking_history,
-         failAction : universal_functions.fail_action
+         failAction : fail_action
       },
       plugins : plugins
    }
@@ -235,7 +235,7 @@ const logout = {
       },
       validate : {
          headers : header,
-         failAction : universal_functions.fail_action
+         failAction : fail_action
       },
       plugins : plugins
    }

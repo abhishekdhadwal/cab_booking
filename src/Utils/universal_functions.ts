@@ -46,45 +46,9 @@ const send_error = (error_msg, reply) => {
 
 }
 
-const fail_action = async(request : any, reply : any, error : any) => {
-      try {
-
-          error.output.payload.type = "Joi Error";
-
-          if (error.isBoom) {
-              delete error.output.payload.validation;
-              if (error.output.payload.message.indexOf("authorization") !== -1) {
-                  error.output.statusCode = error_msg.unauthorized.status_code;
-                  return reply(error);
-              }
-              let details = error.details[0];
-              if (details.message.indexOf("pattern") > -1 && details.message.indexOf("required") > -1 && details.message.indexOf("fails") > -1) {
-                  error.output.payload.message = "Invalid " + details.path;
-                  return reply(error);
-              }
-          }
-          let customErrorMessage = '';
-          if (error.output.payload.message.indexOf("[") > -1) {
-              customErrorMessage = error.output.payload.message.substr(error.output.payload.message.indexOf("["));
-          } else {
-              customErrorMessage = error.output.payload.message;
-          }
-          customErrorMessage = customErrorMessage.replace(/"/g, '');
-          customErrorMessage = customErrorMessage.replace('[', '');
-          customErrorMessage = customErrorMessage.replace(']', '');
-          error.output.payload.message = customErrorMessage.replace(/\b./g, (a) => a.toUpperCase());
-          delete error.output.payload.validation;
-          return error;
-
-      }
-      catch(err) {
-            throw err;
-      }
-}
 
 
 export {
       send_success,
-      send_error,
-      fail_action
+      send_error
 }

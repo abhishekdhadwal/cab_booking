@@ -9,7 +9,11 @@ import Pack from '../../package.json'
 const swaggerOptions: HapiSwagger.RegisterOptions = {
   info: {
       title: 'Cab Booking Api Documentation',
-      version : Pack.version
+      version : Pack.version,
+      contact : {
+        name : 'ABHISHEK DHADWAL',
+        email : 'abhishekdhadwal33@gmail.com'
+      }
   },
   'schemes': [ 'http', 'https' ]
 };
